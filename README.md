@@ -67,6 +67,7 @@ After it's done, run the following command to finalize setup:
   - You may need to install pyright, gopls, etc. via npm or your system's package manager.
   - See nvim-lspconfig's supported servers
 - Use a Nerd Font for full icon support (e.g., FiraCode Nerd Font)
+- Make sure pyright is installed using `npm install -g pyright`
 - There's an image in the `assets/` folder you can set as your terminal background to replicate my exact setup. I have a black overlay on it to reduce brightness to ~17%.
 
 ## Contact
