@@ -1,0 +1,22 @@
+# Neovim swap/backup/undo files
+*.swp
+*.swo
+*.bak
+*.tmp
+*.undo
+
+# Lazy.nvim state/compiled/cache (in data or config folders)
+lazy-lock.json
+plugin/packer_compiled.lua
+
+# Avoid uploading machine-specific files
+session.*
+tags
+.netrwhist
+
+# VS Code workspace files, just in case
+*.code-workspace
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
