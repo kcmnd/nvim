@@ -17,3 +17,14 @@ vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down',
 
 -- Move selected lines up (visual mode)
 vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up', silent = true })
+
+-- Copy the error window from pyright
+vim.keymap.set('n', '<leader>y', function()
+    local d = vim.diagnostic.get(0, {lnum = vim.fn.line('.')-1})[1]
+    if d then
+        vim.fn.setreg('+', d.message)
+        print("Copied diagnostic!")
+    else
+        print("No diagnostic here")
+    end
+end, { desc = "Copy LSP diagnostic under cursor", silent = true })
