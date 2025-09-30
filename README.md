@@ -1,7 +1,7 @@
 # 💤 My Neovim Configuration (Lazy.nvim, Lua-based)
 
 Welcome to my personal Neovim configuration!  
-It's written in **Lua**, uses the **Lazy.nvim** plugin manager, and is organized into a modular structure for maintainability and performance. While I primarily use it for **Python development**, it should work with languages like **Go**, **Java**, **Lua**, and web development languages like **HTML/CSS/JS**.
+It's written in **Lua**, uses the **Lazy.nvim** plugin manager, and is organized into a modular structure for maintainability and performance. While I primarily use it for **Python**, it should work with **Go**, **Java**, **Lua**, and web development languages like **HTML/CSS/JS**.
 
 ---
 
@@ -66,7 +66,7 @@ After it's done, run the following command to finalize setup:
 - For autocompletion and LSP support:
   - You may need to install pyright, gopls, etc. via npm or your system's package manager.
   - See nvim-lspconfig's supported servers
-- Use a Nerd Font for full icon support (e.g., FiraCode Nerd Font)
+- Use a Nerd Font for full icon support (I use [FiraMono](https://www.nerdfonts.com/font-downloads). Click the link then scroll to find it, or pick whichever font you like from the ones on the website.)
 - Make sure pyright is installed using `npm install -g pyright`
 - There's an image in the `assets/` folder you can set as your terminal background to replicate my exact setup. I have a black overlay on it to reduce brightness to ~17%.
 
