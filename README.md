@@ -36,7 +36,7 @@ Key Combo	Action:
 `<Space> ff`	Fuzzy file finder (Telescope)  
 `<Space> fg`	Live grep search (Telescope)  
 `<A-j>` / `<A-k>`	Move lines down/up  
-Note: `<A-*>` means holding Alt while pressing the key. You may need to change your terminal to send the correct Alt signal to neovim.  
+Note: `<A-*>` means holding Option (onn mac, haven't tried this on Windows or Linux machines but theoretically it should work fine with the Alt key) while pressing the key. You may need to change your terminal to send the correct Option signal to neovim.  
 
 ## Installation
 
