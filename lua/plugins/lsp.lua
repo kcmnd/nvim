@@ -3,42 +3,43 @@ return {
   config = function()
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-    local lspconfig = require('lspconfig')
-
     -- Python
-    lspconfig.pyright.setup({
+    vim.lsp.config.pyright = {
       capabilities = capabilities
-    })
+    }
 
     -- Lua
-    lspconfig.lua_ls.setup({
+    vim.lsp.config.lua_ls = {
       capabilities = capabilities
-    })
+    }
 
-    -- JS
-    lspconfig.ts_ls.setup({
+    -- JS/TS
+    vim.lsp.config.ts_ls = {
       capabilities = capabilities
-    })
+    }
 
     -- HTML
-    lspconfig.html.setup({
+    vim.lsp.config.html = {
       capabilities = capabilities
-    })
+    }
 
     -- CSS
-    lspconfig.cssls.setup({
+    vim.lsp.config.cssls = {
       capabilities = capabilities
-    })
+    }
 
     -- Java
-    lspconfig.jdtls.setup({
+    vim.lsp.config.jdtls = {
       capabilities = capabilities
-    })
+    }
 
     -- Go
-    lspconfig.gopls.setup({
+    vim.lsp.config.gopls = {
       capabilities = capabilities
-    })
+    }
+
+    -- Enable LSP servers
+    vim.lsp.enable({'pyright', 'lua_ls', 'ts_ls', 'html', 'cssls', 'jdtls', 'gopls'})
 
     vim.diagnostic.config({
       virtual_text = false, -- disables inline diagnostics
