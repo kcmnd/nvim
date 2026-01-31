@@ -28,3 +28,6 @@ vim.keymap.set('n', '<leader>y', function()
         print("No diagnostic here")
     end
 end, { desc = "Copy LSP diagnostic under cursor", silent = true })
+
+-- See method signature if hovering over it
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })

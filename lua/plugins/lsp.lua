@@ -54,6 +54,37 @@ return {
     })
 
     vim.o.updatetime = 250
-    vim.cmd [[autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })]]
+
+    -- Toggle for diagnostic float on hover
+    local diag_float_enabled = true
+    local function toggle_diagnostic_float()
+      if diag_float_enabled then
+        vim.api.nvim_clear_autocmds({ group = "DiagnosticFloat" })
+        diag_float_enabled = false
+        print("Diagnostic float disabled")
+      else
+        vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
+        vim.api.nvim_create_autocmd("CursorHold", {
+          group = "DiagnosticFloat",
+          callback = function()
+            vim.diagnostic.open_float(nil, { focusable = false })
+          end
+        })
+        diag_float_enabled = true
+        print("Diagnostic float enabled")
+      end
+    end
+
+    -- Enable by default
+    vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
+    vim.api.nvim_create_autocmd("CursorHold", {
+      group = "DiagnosticFloat",
+      callback = function()
+        vim.diagnostic.open_float(nil, { focusable = false })
+      end
+    })
+
+    -- Keymap to toggle
+    vim.keymap.set('n', '<leader>td', toggle_diagnostic_float, { desc = 'Toggle diagnostic float on hover' })
   end
 }
