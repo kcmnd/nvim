@@ -5,9 +5,9 @@
 # What it does:
 #   1. Downloads the Neovim AppImage on the remote server (no sudo needed)
 #   2. Extracts it (in case FUSE isn't available)
-#   3. Symlinks nvim into ~/bin
+#   3. Symlinks nvim into ~/.local/bin
 #   4. Syncs your local Neovim config (~/.config/nvim) to the server
-#   5. Adds ~/bin to PATH in .bashrc if not already there
+#   5. Adds ~/.local/bin to PATH in .bashrc if not already there
 #   6. Prints a quick-start guide
 
 set -euo pipefail
@@ -37,7 +37,7 @@ ssh "$SERVER" bash -s -- "$NVIM_URL" << 'REMOTE_INSTALL'
     set -euo pipefail
     NVIM_URL="$1"
 
-    mkdir -p ~/bin ~/.config
+    mkdir -p ~/.local/bin ~/.config
 
     # Clean up any previous portable install
     rm -rf ~/nvim-portable ~/nvim-linux-x86_64.appimage
@@ -49,17 +49,17 @@ ssh "$SERVER" bash -s -- "$NVIM_URL" << 'REMOTE_INSTALL'
     # Try running directly first (needs FUSE); if that fails, extract
     if ~/nvim-linux-x86_64.appimage --version &>/dev/null; then
         echo "  FUSE available — linking AppImage directly."
-        ln -sf ~/nvim-linux-x86_64.appimage ~/bin/nvim
+        ln -sf ~/nvim-linux-x86_64.appimage ~/.local/bin/nvim
     else
         echo "  FUSE not available — extracting AppImage..."
         cd ~
         ./nvim-linux-x86_64.appimage --appimage-extract &>/dev/null
         mv squashfs-root nvim-portable
         rm ~/nvim-linux-x86_64.appimage
-        ln -sf ~/nvim-portable/usr/bin/nvim ~/bin/nvim
+        ln -sf ~/nvim-portable/usr/bin/nvim ~/.local/bin/nvim
     fi
 
-    echo "  Neovim installed: $(~/bin/nvim --version | head -1)"
+    echo "  Neovim installed: $(~/.local/bin/nvim --version | head -1)"
 REMOTE_INSTALL
 
 # ─── Step 2: Sync your Neovim config ─────────────────────────────────────────
@@ -76,18 +76,18 @@ else
     echo "  WARNING: No local config found at ${LOCAL_NVIM_CONFIG}, skipping."
 fi
 
-# ─── Step 3: Ensure ~/bin is on PATH ─────────────────────────────────────────
+# ─── Step 3: Ensure ~/.local/bin is on PATH ─────────────────────────────────────────
 echo ""
-echo "[3/4] Ensuring ~/bin is on PATH..."
+echo "[3/4] Ensuring ~/.local/bin is on PATH..."
 
 ssh "$SERVER" bash << 'REMOTE_PATH'
     if ! grep -q 'export PATH="$HOME/bin:$PATH"' ~/.bashrc 2>/dev/null; then
         echo '' >> ~/.bashrc
         echo '# Neovim (portable install)' >> ~/.bashrc
         echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
-        echo "  Added ~/bin to PATH in ~/.bashrc"
+        echo "  Added ~/.local/bin to PATH in ~/.bashrc"
     else
-        echo "  ~/bin already on PATH"
+        echo "  ~/.local/bin already on PATH"
     fi
 REMOTE_PATH
 
