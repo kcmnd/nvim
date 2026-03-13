@@ -1,10 +1,4 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-
-local builtin = require("telescope.builtin")
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {desc = 'Telescope find files'})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {desc = 'Telescope live grep'})
-
 
 -- Move current line down (normal mode)
 vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { desc = 'Move line down', silent = true })

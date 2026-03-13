@@ -28,18 +28,21 @@ return {
       capabilities = capabilities
     }
 
-    -- Java
-    vim.lsp.config.jdtls = {
-      capabilities = capabilities
-    }
+    -- Java (only if available)
+    if vim.fn.executable("java") == 1 then
+      vim.lsp.config.jdtls = { capabilities = capabilities }
+    end
 
-    -- Go
-    vim.lsp.config.gopls = {
-      capabilities = capabilities
-    }
+    -- Go (only if available)
+    if vim.fn.executable("go") == 1 then
+      vim.lsp.config.gopls = { capabilities = capabilities }
+    end
 
-    -- Enable LSP servers
-    vim.lsp.enable({'pyright', 'lua_ls', 'ts_ls', 'html', 'cssls', 'jdtls', 'gopls'})
+    -- Enable LSP servers (conditionally include runtime-dependent ones)
+    local servers = { 'pyright', 'lua_ls', 'ts_ls', 'html', 'cssls' }
+    if vim.fn.executable("java") == 1 then table.insert(servers, 'jdtls') end
+    if vim.fn.executable("go") == 1 then table.insert(servers, 'gopls') end
+    vim.lsp.enable(servers)
 
     vim.diagnostic.config({
       virtual_text = false, -- disables inline diagnostics

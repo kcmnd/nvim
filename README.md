@@ -29,7 +29,10 @@ nvim/
 - Autocompletion with nvim-cmp
 - Syntax highlighting & parsing via Treesitter
 - Fuzzy finding and live grep via Telescope
-- File explorer with Neo-tree
+- File browsing with oil.nvim (edit the filesystem like a buffer)
+- Quick file switching with Harpoon
+- Git integration: signs, diff view, file history, and status in oil
+- Inline markdown rendering with toggle
 - Modular setup for easy editing and extension
 
 ## Keybindings
@@ -38,17 +41,31 @@ Leader key is `<Space>`.
 
 | Key | Mode | Action |
 |-----|------|--------|
-| `<Space>pv` | Normal | Open netrw file explorer |
+| `-` | Normal | Open oil.nvim (browse parent directory) |
 | `<Space>ff` | Normal | Fuzzy file finder (Telescope) |
 | `<Space>fg` | Normal | Live grep search (Telescope) |
+| `<Space>a` | Normal | Pin current file to Harpoon |
+| `<C-e>` | Normal | Toggle Harpoon quick menu |
+| `<C-h>` | Normal | Jump to Harpoon file 1 |
+| `<C-t>` | Normal | Jump to Harpoon file 2 |
+| `<C-n>` | Normal | Jump to Harpoon file 3 |
+| `<C-s>` | Normal | Jump to Harpoon file 4 |
 | `<Space>y` | Normal | Copy LSP diagnostic under cursor to clipboard |
+| `<Space>td` | Normal | Toggle LSP diagnostic float on hover |
+| `<Space>tm` | Normal | Toggle rendered markdown view |
+| `<Space>gd` | Normal | Open git diff view (all changes vs HEAD) |
+| `<Space>gl` | Normal | Git file history (full repo log) |
+| `<Space>gf` | Normal | Git file history (current file only) |
+| `<Space>gx` | Normal | Close git diff view |
+| `<Space>gs` | Normal | Telescope git status (changed files) |
 | `<A-j>` | Normal | Move current line down |
 | `<A-k>` | Normal | Move current line up |
 | `<A-j>` | Visual | Move selected lines down |
 | `<A-k>` | Visual | Move selected lines up |
 | `K` | Normal | Show LSP hover info (method signature, docs) |
+| `gc` / `gcc` | Visual / Normal | Comment selection / line (built-in) |
 
-**Note:** `<A-*>` means holding Alt (or Option on Mac). You may need to configure your terminal to send the correct Alt/Option key codes to Neovim.  
+**Note:** `<A-*>` means holding Alt (or Option on Mac). You may need to configure your terminal to send the correct Alt/Option key codes to Neovim.
 
 ## Installation
 

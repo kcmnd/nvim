@@ -9,6 +9,7 @@ return {
     -- Install parsers you want
     local parsers = {
       "c",
+      "cpp",
       "lua",
       "vim",
       "vimdoc",
@@ -20,11 +21,18 @@ return {
       "css",
       "bash",
       "json",
+      "toml",
+      "yaml",
       "markdown",
     }
 
-    -- Install parsers (async, won't block startup)
-    ts.install(parsers)
+    -- Only install parsers that aren't already available
+    local missing = vim.tbl_filter(function(lang)
+      return not pcall(vim.treesitter.language.inspect, lang)
+    end, parsers)
+    if #missing > 0 then
+      ts.install(missing)
+    end
 
     -- Enable highlighting via autocmd (new API)
     vim.api.nvim_create_autocmd("FileType", {
