@@ -33,6 +33,7 @@ nvim/
 - Quick file switching with Harpoon
 - Git integration: signs, diff view, file history, and status in oil
 - Inline markdown rendering with toggle
+- Claude Code integration via claudecode.nvim (diff review, context sharing)
 - Modular setup for easy editing and extension
 
 ## Keybindings
@@ -58,6 +59,10 @@ Leader key is `<Space>`.
 | `<Space>gf` | Normal | Git file history (current file only) |
 | `<Space>gx` | Normal | Close git diff view |
 | `<Space>gs` | Normal | Telescope git status (changed files) |
+| `<Space>aa` | Normal | Accept Claude Code diff |
+| `<Space>ad` | Normal | Deny Claude Code diff |
+| `<Space>ab` | Normal | Add current buffer to Claude context |
+| `<Space>as` | Visual | Send selection to Claude |
 | `<A-j>` | Normal | Move current line down |
 | `<A-k>` | Normal | Move current line up |
 | `<A-j>` | Visual | Move selected lines down |
@@ -101,7 +106,14 @@ After it's done, run the following command to finalize setup:
   cargo install tree-sitter-cli
   ```
 - **Node.js** (for LSP servers like pyright)
+- **ripgrep** (required for Telescope live grep): `sudo apt install ripgrep` or via curl:
+  ```bash
+  curl -LO https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-x86_64-unknown-linux-gnu.tar.gz
+  tar xf ripgrep-15.1.0-x86_64-unknown-linux-gnu.tar.gz
+  mv ripgrep-15.1.0-x86_64-unknown-linux-gnu/rg ~/.local/bin/
+  ```
 - **A Nerd Font** for icon support (I use [FiraMono](https://www.nerdfonts.com/font-downloads))
+- **Claude Code CLI** (optional, for claudecode.nvim integration)
 
 ## LSP Setup
 
