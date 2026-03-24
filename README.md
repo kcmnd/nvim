@@ -69,8 +69,11 @@ Leader key is `<Space>`.
 | `<A-k>` | Visual | Move selected lines up |
 | `K` | Normal | Show LSP hover info (method signature, docs) |
 | `gc` / `gcc` | Visual / Normal | Comment selection / line (built-in) |
+| `<Space>fj` | Normal | Format JSON file |
 
-**Note:** `<A-*>` means holding Alt (or Option on Mac). You may need to configure your terminal to send the correct Alt/Option key codes to Neovim.
+**Notes:**
+- `<A-*>` means holding Alt (or Option on Mac). You may need to configure your terminal to send the correct Alt/Option key codes to Neovim.
+- **Clipboard over SSH:** `"+y` copies to your local system clipboard via OSC 52. To paste from your local clipboard into Neovim, use `Ctrl+Shift+V` in Windows Terminal.
 
 ## Installation
 
