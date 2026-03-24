@@ -25,3 +25,6 @@ end, { desc = "Copy LSP diagnostic under cursor", silent = true })
 
 -- See method signature if hovering over it
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
+
+-- Format JSON
+vim.keymap.set('n', '<leader>fj', ':%!python3 -m json.tool<CR>', { desc = 'Format JSON', silent = true })

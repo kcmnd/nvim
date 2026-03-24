@@ -5,6 +5,23 @@ vim.cmd("set shiftwidth=2")
 vim.wo.number = true
 vim.wo.relativenumber = true
 
+-- Use OSC 52 for clipboard over SSH (copies to local Windows clipboard)
+-- Paste with Ctrl+Shift+V in Windows Terminal (OSC 52 paste is blocked by most terminals)
+if os.getenv("SSH_TTY") then
+  local osc52 = require("vim.ui.clipboard.osc52")
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = osc52.copy("+"),
+      ["*"] = osc52.copy("*"),
+    },
+    paste = {
+      ["+"] = function() return { vim.fn.getreg("0") } end,
+      ["*"] = function() return { vim.fn.getreg("0") } end,
+    },
+  }
+end
+
 require("config.lazy")
 
 require("kc.remap")
