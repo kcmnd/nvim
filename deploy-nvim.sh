@@ -81,10 +81,10 @@ echo ""
 echo "[3/4] Ensuring ~/.local/bin is on PATH..."
 
 ssh "$SERVER" bash << 'REMOTE_PATH'
-    if ! grep -q 'export PATH="$HOME/bin:$PATH"' ~/.bashrc 2>/dev/null; then
+    if ! grep -q 'export PATH="$HOME/.local/bin:$PATH"' ~/.bashrc 2>/dev/null; then
         echo '' >> ~/.bashrc
         echo '# Neovim (portable install)' >> ~/.bashrc
-        echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
+        echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
         echo "  Added ~/.local/bin to PATH in ~/.bashrc"
     else
         echo "  ~/.local/bin already on PATH"
@@ -95,7 +95,7 @@ REMOTE_PATH
 echo ""
 echo "[4/4] Verifying installation..."
 
-ssh "$SERVER" 'export PATH="$HOME/bin:$PATH" && nvim --version | head -1'
+ssh "$SERVER" 'export PATH="$HOME/.local/bin:$PATH" && nvim --version | head -1'
 
 echo ""
 echo "══════════════════════════════════════════════════════"
