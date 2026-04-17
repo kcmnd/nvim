@@ -100,6 +100,7 @@ After it's done, run the following command to finalize setup:
 ## Requirements
 
 - **Neovim v0.10.0+** (required for treesitter and LSP features)
+- **[Node.js](https://nodejs.org/en/download)** (for LSP servers like pyright)
 - **tree-sitter CLI** (required for nvim-treesitter to compile parsers):
   ```bash
   # Install via npm
@@ -108,12 +109,11 @@ After it's done, run the following command to finalize setup:
   # Or via cargo
   cargo install tree-sitter-cli
   ```
-- **Node.js** (for LSP servers like pyright)
 - **ripgrep** (required for Telescope live grep): `sudo apt install ripgrep` or via curl:
   ```bash
-  curl -LO https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-x86_64-unknown-linux-gnu.tar.gz
-  tar xf ripgrep-15.1.0-x86_64-unknown-linux-gnu.tar.gz
-  mv ripgrep-15.1.0-x86_64-unknown-linux-gnu/rg ~/.local/bin/
+  curl -LO https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-x86_64-unknown-linux-musl.tar.gz
+  tar xf ripgrep-15.1.0-x86_64-unknown-linux-musl.tar.gz
+  mv ripgrep-15.1.0-x86_64-unknown-linux-musl .local/bin/
   ```
 - **A Nerd Font** for icon support (I use [FiraMono](https://www.nerdfonts.com/font-downloads))
 - **Claude Code CLI** (optional, for claudecode.nvim integration)
