@@ -13,8 +13,9 @@
 set -euo pipefail
 
 # ─── Config ───────────────────────────────────────────────────────────────────
-NVIM_VERSION="latest"  # change to e.g. "v0.11.5" for a pinned version
-NVIM_URL="https://github.com/neovim/neovim/releases/${NVIM_VERSION}/download/nvim-linux-x86_64.appimage"
+NVIM_VERSION="v0.11.6"
+NVIM_SHA256="77dd16d86e6549a0bbbbfbc18636d434ffe5b0ac8b9854a7669e35cc4b93dda0"
+NVIM_URL="https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux-x86_64.appimage"
 LOCAL_NVIM_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 # ──────────────────────────────────────────────────────────────────────────────
 
@@ -33,9 +34,10 @@ echo "════════════════════════�
 echo ""
 echo "[1/4] Downloading and extracting Neovim AppImage on ${SERVER}..."
 
-ssh "$SERVER" bash -s -- "$NVIM_URL" << 'REMOTE_INSTALL'
+ssh "$SERVER" bash -s -- "$NVIM_URL" "$NVIM_SHA256" << 'REMOTE_INSTALL'
     set -euo pipefail
     NVIM_URL="$1"
+    NVIM_SHA256="$2"
 
     mkdir -p ~/.local/bin ~/.config
 
@@ -44,6 +46,10 @@ ssh "$SERVER" bash -s -- "$NVIM_URL" << 'REMOTE_INSTALL'
 
     echo "  Downloading from ${NVIM_URL}..."
     curl -fLo ~/nvim-linux-x86_64.appimage "$NVIM_URL"
+
+    echo "  Verifying sha256..."
+    echo "${NVIM_SHA256}  ${HOME}/nvim-linux-x86_64.appimage" | sha256sum -c -
+
     chmod u+x ~/nvim-linux-x86_64.appimage
 
     # Try running directly first (needs FUSE); if that fails, extract
