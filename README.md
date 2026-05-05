@@ -114,6 +114,7 @@ After it's done, run the following command to finalize setup:
   curl -LO https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-x86_64-unknown-linux-musl.tar.gz
   tar xf ripgrep-15.1.0-x86_64-unknown-linux-musl.tar.gz
   mv ripgrep-15.1.0-x86_64-unknown-linux-musl/rg ~/.local/bin/
+  rm -rf ripgrep-15.1.0-x86_64-unknown-linux-musl/
   ```
 - **A Nerd Font** for icon support (I use [FiraMono](https://www.nerdfonts.com/font-downloads))
 - **Claude Code CLI** (optional, for claudecode.nvim integration)
