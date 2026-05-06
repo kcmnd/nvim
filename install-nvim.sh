@@ -92,6 +92,15 @@ else
     echo "  ~/.local/bin already on PATH"
 fi
 
+# Browser-based dev container terminals support truecolor but don't advertise it.
+# Set COLORTERM so Neovim's termguicolors actually renders.
+if ! grep -q 'export COLORTERM=truecolor' ~/.bashrc 2>/dev/null; then
+    echo 'export COLORTERM=truecolor' >> ~/.bashrc
+    echo "  Set COLORTERM=truecolor in ~/.bashrc"
+else
+    echo "  COLORTERM=truecolor already set"
+fi
+
 echo ""
 echo "══════════════════════════════════════════════════════"
 echo "  Done! Open a new shell (or 'source ~/.bashrc'),"
