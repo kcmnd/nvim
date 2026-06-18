@@ -45,6 +45,7 @@ Leader key is `<Space>`.
 | `-` | Normal | Open oil.nvim (browse parent directory) |
 | `<Space>ff` | Normal | Fuzzy file finder (Telescope) |
 | `<Space>fg` | Normal | Live grep search (Telescope) |
+| `<Space>fG` | Normal | Live grep within files matching a filename glob (e.g. `instruction.md`) |
 | `<Space>a` | Normal | Pin current file to Harpoon |
 | `<C-e>` | Normal | Toggle Harpoon quick menu |
 | `<C-h>` | Normal | Jump to Harpoon file 1 |

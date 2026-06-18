@@ -25,6 +25,17 @@ return {
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
     vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+    -- Live grep, but only within files whose name matches a glob you provide.
+    -- e.g. enter "instruction.md" to search the string across every instruction.md
+    -- in all subdirectories (instead of every file in the tree).
+    vim.keymap.set('n', '<leader>fG', function()
+      vim.ui.input({ prompt = 'Grep in files matching (glob): ' }, function(glob)
+        if glob == nil or glob == '' then
+          return
+        end
+        builtin.live_grep({ glob_pattern = glob })
+      end)
+    end, { desc = 'Telescope live grep in filename glob' })
     vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = 'Telescope git status' })
   end,
 }
