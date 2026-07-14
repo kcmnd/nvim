@@ -7,7 +7,9 @@ vim.wo.relativenumber = true
 
 -- Use OSC 52 for clipboard over SSH (copies to local Windows clipboard)
 -- Paste with Ctrl+Shift+V in Windows Terminal (OSC 52 paste is blocked by most terminals)
-if os.getenv("SSH_TTY") then
+-- SSH_TTY is only set on real ssh tty logins; VS Code Remote-SSH terminals
+-- only inherit SSH_CONNECTION from the server process, so check both.
+if os.getenv("SSH_TTY") or os.getenv("SSH_CONNECTION") or os.getenv("TERM_PROGRAM") == "vscode" then
   local osc52 = require("vim.ui.clipboard.osc52")
   vim.g.clipboard = {
     name = "OSC 52",

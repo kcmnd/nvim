@@ -74,7 +74,7 @@ Leader key is `<Space>`.
 
 **Notes:**
 - `<A-*>` means holding Alt (or Option on Mac). You may need to configure your terminal to send the correct Alt/Option key codes to Neovim.
-- **Clipboard over SSH:** `"+y` copies to your local system clipboard via OSC 52. To paste from your local clipboard into Neovim, use `Ctrl+Shift+V` in Windows Terminal.
+- **Clipboard over SSH:** `"+y` copies to your local system clipboard via OSC 52. Works in real ssh sessions (`SSH_TTY`/`SSH_CONNECTION`) and VS Code terminals (`TERM_PROGRAM=vscode`), including Remote-SSH. To paste from your local clipboard into Neovim, use `Ctrl+Shift+V` in Windows Terminal.
 
 ## Installation
 
