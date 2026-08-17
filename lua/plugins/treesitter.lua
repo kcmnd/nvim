@@ -24,6 +24,7 @@ return {
       "toml",
       "yaml",
       "markdown",
+      "xml",
     }
 
     -- Only install parsers that aren't already available
